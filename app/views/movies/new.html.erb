@@ -1,0 +1,25 @@
+<h1>Horror Movie</h1>
+<h3>新規映画</h3>
+<%= form_for @movie do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :size => 140 %>
+
+  </div>
+  <div class="field">
+    <%= f.label :画像 %>
+    <%= f.text_field :image, :size => 140 %>
+
+  </div>
+  <div class="field">
+    <%= f.label :ジャンル %>
+    <%= f.select :genre, [["感動系","感動系"], ["怖い系","怖い系"],["グラフィック系","グラフィック系"]], include_blank:"ジャンル" %>
+
+  </div>
+  <div class="field">
+    <%= f.label :感想 %>
+    <%= f.text_field :thoghts, :size => 140 %>
+  </div> 
+    <%= f.submit "Tweetする" %>
+  <% end %>
+  <%= link_to "TOPへ", movies_path %>
