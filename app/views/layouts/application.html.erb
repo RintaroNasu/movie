@@ -9,8 +9,21 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
-  </body>
+  <header>
+    <% unless user_signed_in? %>
+    <p><%= link_to "ログイン", new_user_session_path %></p>
+    <p><%= link_to "新規登録", new_user_registration_path %></p>
+    <% end %>
+    <% if user_signed_in? %>
+    <p><%= link_to "新規投稿",  new_movie_path %></p>
+    <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+    <% end %>
+    <p><%= link_to "感動系", movies_emotion_page_path %></p>
+    <p><%= link_to "映像系", movies_graphic_page_path %></p>
+    <p><%= link_to "最恐ホラーベスト5", movies_path %></p>
+   <p><%= link_to "about", movies_about_page_path %></p>
+   </header>
+      <%= yield %>
+    </body>
 </html>

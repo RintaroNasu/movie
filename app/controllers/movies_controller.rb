@@ -1,5 +1,15 @@
 class MoviesController < ApplicationController
     before_action :authenticate_user!, only: [:new]
+    def top
+      @movies = Movie.all
+      render layout:false 
+    end
+    def emotion
+      @movies = Movie.all
+    end
+    def graphic
+      @movies = Movie.all
+    end
     def index
         @movies = Movie.all
     end
