@@ -1,7 +1,7 @@
 <% @movies.each do |t| %>
     <% if t.genre == "グラフィック" %>  
     <%= t.title %>
-    <%= t.image %>
+    <%= image_tag t.image_url, size: "250x200" if t.image? %>
     <%= t.thoghts %>
     <%= t.genre %>
     <% end %>

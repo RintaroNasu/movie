@@ -1,8 +1,19 @@
 <% @movies.each do |t| %>
-    <% if t.genre == "怖い" %>  
+  <% if t.genre == "怖い" %>  
     <%= t.title %>
-    <%= t.image %>
-    <%= t.thoghts %>
-    <%= t.genre %>
+    <%= image_tag t.image_url, size: "250x200" if t.image? %>
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+        <%= link_to movie_like_path(id: t.id, movie_id: t.id), method: :delete do %>
+          <i class="fas fa-heart"></i><%= t.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to movie_likes_path(id: t.id, movie_id: t.id), method: :post do %>
+          <i class="far fa-heart"></i><%= t.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>
     <% end %>
   <% end %>
+<% end %>

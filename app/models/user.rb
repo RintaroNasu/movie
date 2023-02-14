@@ -4,4 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :movies
+  has_many :likes, dependent: :destroy
+  has_many :liked_tweets, through: :likes, source: :movie
+  def already_liked?(movie)
+    self.likes.exists?(movie_id: movie.id)
+  end
 end
